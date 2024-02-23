@@ -26,7 +26,7 @@ with col2:
 
 st.subheader("Exploratory Data Analysis")
 
-df = pd.read_csv('clean_data2.csv')
+df = pd.read_csv(r'C:\Users\PC\Desktop\hypertension machine learning\clean_data2.csv')
 
 if gender_filter != "All":
     df = df[df['gender'] == gender_filter]
