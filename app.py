@@ -4,8 +4,8 @@ import streamlit as st
 st.set_page_config(
     page_title="Smart Health",
     page_icon="⚕️",
-    layout="wide",  # Adjustable layout 
-    initial_sidebar_state="collapsed"  # Adjustable sidebar
+    layout="wide",  # Adjust layout as needed
+    initial_sidebar_state="collapsed"  # Adjust sidebar state as needed
 )
 
 # Create the .streamlit/config.toml file (if it doesn't exist)
