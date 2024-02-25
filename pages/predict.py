@@ -83,34 +83,35 @@ def predict_hypertension():
     result = st.button('Predict')
 
     if result:
-        vals = [gender, age, has_diabetes, has_heart_disease, smoking_status, body_mass_index, glycated_haemoglobin, average_glucose_level, stress_levels, hours_of_sleep, diet]
-        col = ['gender', 'age', 'has_diabetes', 'has_heart_disease', 'smoking_status', 'body_mass_index', 'glycated_haemoglobin', 'average_glucose_level', 'stress_levels', 'hours_of_sleep', 'diet']
-        testdf = pd.DataFrame([vals], columns = col)
+    # Check if any of the input values is still in its default state
+        if (gender == " ") or (has_diabetes == " ") or (has_heart_disease == " ") or (smoking_status == " ") or (diet == " "):
+            st.warning('Please fill out all the required fields.')
+        else:
+            vals = [gender, age, has_diabetes, has_heart_disease, smoking_status, body_mass_index, glycated_haemoglobin, average_glucose_level, stress_levels, hours_of_sleep, diet]
+            col = ['gender', 'age', 'has_diabetes', 'has_heart_disease', 'smoking_status', 'body_mass_index', 'glycated_haemoglobin', 'average_glucose_level', 'stress_levels', 'hours_of_sleep', 'diet']
+            testdf = pd.DataFrame([vals], columns=col)
 
-        # encode test data 
-        testdf['gender'] = testdf['gender'].map(g)
-        testdf['has_diabetes'] = testdf['has_diabetes'].map(hd)
-        testdf['has_heart_disease'] = testdf['has_heart_disease'].map(hhd)
-        testdf['smoking_status'] = testdf['smoking_status'].map(ss)
-        testdf['diet'] = testdf['diet'].map(d)
+            # encode test data 
+            testdf['gender'] = testdf['gender'].map(g)
+            testdf['has_diabetes'] = testdf['has_diabetes'].map(hd)
+            testdf['has_heart_disease'] = testdf['has_heart_disease'].map(hhd)
+            testdf['smoking_status'] = testdf['smoking_status'].map(ss)
+            testdf['diet'] = testdf['diet'].map(d)
 
-        # reindex
-
-        testdf = testdf.reindex(columns = ['gender', 'age',
+            # reindex
+            testdf = testdf.reindex(columns=['gender', 'age',
                                             'has_diabetes', 'has_heart_disease',
                                             'smoking_status', 'body_mass_index',
                                             'glycated_haemoglobin', 'average_glucose_level',
                                             'stress_levels', 'hours_of_sleep', 'diet'])
-        
 
-        response = classifier.predict(testdf) # predict hypertension
+            response = classifier.predict(testdf)  # predict hypertension
 
-        if response == 1 :
-            st.write('The chances of you having hypertension are quite high. Please visit the nearest healthcare provider')
+            if response == 1:
+                st.write('The chances of you having hypertension are quite high. Please visit the nearest healthcare provider')
+            else:
+                st.write('Chances of you having hypertension are low.')
 
-        else:
-            st.write('Chances of you having hypertension are low.')
-    
 
 if __name__=='__main__':
     predict_hypertension()

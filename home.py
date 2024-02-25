@@ -14,7 +14,7 @@ with open("./config.toml", "w") as f:
     f.write("primaryColor = '#d33682'\n")
     f.write("backgroundColor = '#002b36'\n")
     f.write("secondaryBackgroundColor = '#586e75'\n")
-    f.write("textColor = '#ffd800 color'\n")
+    f.write("textColor = '#ffffff; '\n")
     f.write("font = 'sans serif'\n")
 
 # App content
